@@ -23,6 +23,7 @@ export function Card({
     const isInBasket = products.some((product) => product.id === card.id);
 
     setIsInBasket(isInBasket);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [products]);
 
   const handleButtonClick = () => {

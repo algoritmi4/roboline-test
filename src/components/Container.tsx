@@ -9,19 +9,21 @@ export function Container() {
   const [products, setProducts] = useState<IProduct[] | null>(null);
   const [isPageReady, setIsPageReady] = useState<boolean>(false);
   const [search, setSearch] = useState('');
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     if (!products) {
       getProducts()
         .then((res) => {
           setProducts(res.data.products.slice(0, 10));
-          setIsPageReady(true)
+          setIsPageReady(true);
         })
         .catch((err) => {
-          // TODO: error handle
-          console.log(err)
+          console.log(err);
+          setIsError(true);
         })
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -46,7 +48,7 @@ export function Container() {
           className="content__input"
         />
       </label>
-      <div className="content__cards">
+      <div className={`content__cards ${!isPageReady ? "content__cards_onload" : ""}`}>
         {
           isPageReady && products ? (
             <>
@@ -57,7 +59,15 @@ export function Container() {
               }
             </>
           ) : (
-            <Preloader />
+            <>
+              {
+                isError ? (
+                  <p>Ошибка на сервере. Попробуйте перезагрузить страницу</p>
+                ) : (
+                  <Preloader />
+                )
+              }
+            </>
           )
         }
       </div>
