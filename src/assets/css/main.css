@@ -1,0 +1,38 @@
+#root {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  overflow-y: auto;
+  min-height: 100vh;
+  width: 100%;
+}
+
+html,
+body {
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.icon {
+  height: 24px;
+  width: 24px;
+}
+
+.logo {
+  height: 40px;
+  width: 40px;
+}
+
+.base {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
